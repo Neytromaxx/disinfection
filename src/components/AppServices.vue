@@ -23,7 +23,7 @@
             v-motion="'custom'"
             :initial="{
               opacity: 0,
-              x: 250,
+              x: -250,
             }"
             :visible="{
               opacity: 1,
@@ -104,7 +104,7 @@
             v-motion="'custom'"
             :initial="{
               opacity: 0,
-              x: 250,
+              x: -250,
             }"
             :visible="{
               opacity: 1,
@@ -116,7 +116,7 @@
             v-motion="'custom'"
             :initial="{
               opacity: 0,
-              x: 250,
+              x: -250,
             }"
             :visible="{
               opacity: 1,
