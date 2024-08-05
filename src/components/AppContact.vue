@@ -15,19 +15,24 @@
               :duration="600">
                 <h2>Ma'lumotingizni qoldiring</h2>
                 <input 
-                    type="text"
-                    id="text" 
-                    placeholder="Ismingiz"   
-                    v-model="name"
-                    @blur="validateName"
-                    :class="{ 'is-invalid': !isNameValid }"
-                    >
-                <input 
-                    type="tel" 
-                    id="tel"
-                    placeholder="+998-90-123-45-67" 
-                    >
-                <input type="button" value="Yuborish" class="btn">
+                required
+                type="text"
+                id="text" 
+                placeholder="Ismingiz"   
+                v-model="name"
+                @blur="validateName"
+                :class="{ 'is-invalid': !isNameValid }"
+              >
+              <input 
+                required
+                type="tel" 
+                id="tel"
+                placeholder="+998-90-123-45-67" 
+                v-model="tel"
+                @blur="validateTel"
+                :class="{ 'is-invalid': !isTelValid }"
+              >
+              <button type="submit" class="btn">Yuborish</button>
             </div>
         </form>
         <div class="img">
@@ -52,38 +57,34 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import { ref } from 'vue';
 
-export default {
-  name: 'AppContact',
-  setup() {
-    const name = ref('');
-    const isNameValid = ref(true);
 
-    const validateName = () => {
-      isNameValid.value = name.value.trim() !== '';
-    };
+const name = ref('');
+const tel = ref('');
+const isNameValid = ref(true);
+const isTelValid = ref(true);
 
-    const submitForm = () => {
-      validateName();
 
-      if (isNameValid.value) {
-        alert('Ma`lumotlar muvaffaqiyatli jo`natildi!');
-        }
+const validateName = () => {
+  isNameValid.value = name.value.trim() !== '';
+};
 
-      else {
-        alert('Ma`lumotni kiriting!');
-      }
-    };
+const validateTel = () => {
+  isTelValid.value = tel.value.trim() !== '';
+};
 
-    return {
-      name,
-      isNameValid,
-      validateName,
-      submitForm
-    };
-  },
+
+const submitForm = () => {
+  validateName();
+  validateTel();
+
+  if (isNameValid.value && isTelValid.value) {
+    alert('Ma`lumotlar muvaffaqiyatli jo`natildi!');
+  } else {
+    alert('Ma`lumotni kiriting!');
+  }
 };
 </script>
 
